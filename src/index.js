@@ -1,20 +1,21 @@
-import _ from 'lodash';
-import printMe from './print.js';
+//import _ from 'lodash';
+import taskList from './tasks.js';
 import './style.css';
 
 function component() {
-  const element = document.createElement('div');
+  const tasks = document.getElementById('list');
+  const task = document.createElement('li');
   const btn = document.createElement('button');
 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
+  //task.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  task.classList.add('hello');
 
   btn.innerHTML = 'Click me and check the console!';
-  btn.onclick = printMe;
+  btn.onclick = console.log(taskList);
 
-  element.appendChild(btn);
+  task.appendChild(btn);
 
-  return element;
+  return task;
 }
 
 document.body.appendChild(component());
