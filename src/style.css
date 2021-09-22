@@ -10,8 +10,8 @@ body {
   background-color: white;
   box-sizing: border-box;
   border-radius: 3px;
-  box-shadow: 0px 2px 8px rgb(0 0 0 / 15%);
-  margin: 0 auto;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+  margin: 10px auto;
   max-width: 400px;
 }
 
@@ -19,7 +19,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .fa-sync-alt,
@@ -111,10 +111,14 @@ input[type=checkbox] {
 .clear-btn {
   appearance: none;
   outline: none;
-  background-color: #f6f6f6;
+  background-color: transparent;
   margin: 0 auto;
   display: block;
   opacity: 0.5;
-  border: 10px solid #f6f6f6;
-  border-width: 20px 135px;
+  border: none;
+}
+
+.bottom {
+  padding: 15px;
+  background-color: #f6f6f6;
 }

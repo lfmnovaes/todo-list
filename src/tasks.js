@@ -6,9 +6,9 @@ const tasks = [
   },
   {
     completed: false,
-    description: 'Complete the ToDo List project',
+    description: 'Complete the To Do List project',
     index: 1,
-  }
+  },
 ];
 
 export default tasks;

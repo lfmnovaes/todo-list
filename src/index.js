@@ -1,16 +1,16 @@
-import taskList from './tasks.js';
-import './style.css';
-import '@fortawesome/fontawesome-free/js/fontawesome';
-import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/fontawesome.js';
+import '@fortawesome/fontawesome-free/js/solid.js';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import './style.css';
+import taskList from './tasks.js';
 
 library.add(fas);
 dom.watch();
 
 const boxList = document.getElementById('box-list');
 
-let populateList = () => {
+const populateList = () => {
   const list = document.createElement('ul');
   list.classList.add('item-list');
   taskList.forEach((task) => {
@@ -28,7 +28,7 @@ let populateList = () => {
     list.appendChild(item);
   });
   return list;
-}
+};
 
 window.onload = () => {
   const top = document.createElement('div');
@@ -53,8 +53,11 @@ window.onload = () => {
 
   boxList.appendChild(populateList());
 
+  const bottom = document.createElement('div');
+  bottom.classList.add('bottom');
   const clearBtn = document.createElement('button');
   clearBtn.classList.add('clear-btn');
   clearBtn.innerText = 'Clear all completed';
-  boxList.appendChild(clearBtn);
+  bottom.appendChild(clearBtn);
+  boxList.appendChild(bottom);
 };
