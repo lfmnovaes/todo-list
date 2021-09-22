@@ -1,3 +1,20 @@
 body {
-  background-color: bisque;
+  display: flex;
+}
+
+#list {
+  box-sizing: border-box;
+}
+
+.item {
+  display: flex;
+  position: relative;
+}
+
+form {
+  display: flex;
+}
+
+input {
+  width: 100%;
 }
