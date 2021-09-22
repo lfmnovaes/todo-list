@@ -1,20 +1,120 @@
+* {
+  font-family: sans-serif;
+}
+
 body {
-  display: flex;
+  background-color: #f6f6f6;
 }
 
-#list {
+#box-list {
+  background-color: white;
   box-sizing: border-box;
+  border-radius: 3px;
+  box-shadow: 0px 2px 8px rgb(0 0 0 / 15%);
+  margin: 0 auto;
+  max-width: 400px;
 }
 
-.item {
+.top {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.fa-sync-alt,
+.fa-level-down-alt,
+.fa-ellipsis-v {
+  margin-right: 15px;
+  line-height: 50px;
+  font-size: 14px;
+  opacity: 0.5;
+  color: #333;
+}
+
+.fa-level-down-alt {
+  font-size: 10px;
+  transform: rotate(90deg);
+}
+
+.fa-ellipsis-v {
+  margin: 0 0 0 auto;
+  padding-right: 5px;
+}
+
+#box-list h2 {
+  color: #545862;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 1rem;
+  line-height: 20px;
+  margin: 0;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-list > li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-sizing: content-box;
+  padding: 12px;
 }
 
 form {
   display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  padding-right: 5px;
 }
 
-input {
+input[type=text] {
+  padding: 0 1rem;
   width: 100%;
+  line-height: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+  overflow: hidden;
+  resize: none;
+}
+
+input::placeholder {
+  font-style: italic;
+}
+
+input[type=checkbox] {
+  appearance: none;
+  background-color: transparent;
+  outline: none;
+  padding: 0;
+  border: 2px solid #c1c1c3;
+  cursor: pointer;
+  float: left;
+  color: transparent;
+  height: 16px;
+  width: 16px;
+  border-radius: 2px;
+  margin-right: 17px;
+  box-sizing: border-box;
+}
+
+.clear-btn {
+  appearance: none;
+  outline: none;
+  background-color: #f6f6f6;
+  margin: 0 auto;
+  display: block;
+  opacity: 0.5;
+  border: 10px solid #f6f6f6;
+  border-width: 20px 135px;
 }
