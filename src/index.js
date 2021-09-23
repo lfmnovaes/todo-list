@@ -26,6 +26,7 @@ const populateList = () => {
     cBox.id = task.index;
     cBox.checked = task.completed;
     const label = document.createElement('label');
+    label.contentEditable = true;
     label.innerText = task.description;
     const icon = document.createElement('i');
     icon.classList.add('fas', 'fa-ellipsis-v');

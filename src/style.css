@@ -116,6 +116,14 @@ input[type=checkbox]:checked + label {
   text-decoration: line-through;
 }
 
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
+li:focus-within {
+  background-color: lightyellow;
+}
+
 .clear-btn {
   appearance: none;
   outline: none;
