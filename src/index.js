@@ -3,52 +3,22 @@ import '@fortawesome/fontawesome-free/js/solid.js';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
-import firstList from './tasks.js';
-import chkboxStatus from './chkbox.js';
+import * as taskFunctions from './taskFunctions.js';
 
 library.add(fas);
 dom.watch();
 
 const boxList = document.getElementById('box-list');
-let taskList = firstList;
+const ul = document.createElement('ul');
+ul.classList.add('item-list');
 
-const saveStorage = () => {
-  localStorage.setItem('tasks', JSON.stringify(taskList));
-};
+// const addElement = (index, completed, description) => {
+//   taskList.push(new Task(index, completed, description));
+//   addLi(index, completed, description);
+//   taskFunctions.saveStorage(taskList);
+// };
 
-const populateList = () => {
-  const list = document.createElement('ul');
-  list.classList.add('item-list');
-  taskList.forEach((task) => {
-    const item = document.createElement('li');
-    const cBox = document.createElement('input');
-    cBox.type = 'checkbox';
-    cBox.id = task.index;
-    cBox.checked = task.completed;
-    const label = document.createElement('label');
-    label.contentEditable = true;
-    label.innerText = task.description;
-    const icon = document.createElement('i');
-    icon.classList.add('fas', 'fa-ellipsis-v');
-
-    item.appendChild(cBox);
-    item.appendChild(label);
-    item.appendChild(icon);
-    list.appendChild(item);
-
-    cBox.addEventListener('change', () => {
-      if (chkboxStatus(cBox)) {
-        taskList[parseInt(cBox.id, 10)].completed = true;
-      } else {
-        taskList[parseInt(cBox.id, 10)].completed = false;
-      }
-      saveStorage();
-    });
-  });
-  return list;
-};
-
-const buildBox = () => {
+const createBox = () => {
   const top = document.createElement('div');
   const title = document.createElement('h2');
   const refresh = document.createElement('i');
@@ -56,20 +26,25 @@ const buildBox = () => {
   top.classList.add('top');
   title.innerHTML = "Today's To Do";
   refresh.classList.add('fas', 'fa-sync-alt');
-  top.appendChild(title);
-  top.appendChild(refresh);
+  top.append(title, refresh);
   boxList.appendChild(top);
   const form = document.createElement('form');
   const input = document.createElement('input');
   const arrow = document.createElement('i');
   input.type = 'text';
   input.placeholder = 'Add to your list ...';
+  input.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (input.value !== '') {
+        taskFunctions.addElement(ul, false, input.value);
+        input.value = '';
+      }
+    }
+  });
   arrow.classList.add('fas', 'fa-level-down-alt');
-  form.appendChild(input);
-  form.appendChild(arrow);
-  boxList.appendChild(form);
-
-  boxList.appendChild(populateList());
+  form.append(input, arrow);
+  boxList.append(form, ul);
 
   const bottom = document.createElement('div');
   bottom.classList.add('bottom');
@@ -81,10 +56,10 @@ const buildBox = () => {
 };
 
 window.onload = () => {
+  createBox();
   if (localStorage.getItem('tasks') === null) {
-    localStorage.setItem('tasks', JSON.stringify(taskList));
+    localStorage.setItem('tasks', JSON.stringify([]));
   } else {
-    taskList = JSON.parse(localStorage.tasks);
+    taskFunctions.loadStorage(ul);
   }
-  buildBox();
 };

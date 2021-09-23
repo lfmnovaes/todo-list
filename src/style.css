@@ -117,7 +117,7 @@ input[type=checkbox]:checked + label {
 }
 
 [contenteditable] {
-  outline: 0px solid transparent;
+  outline: 0 solid transparent;
 }
 
 li:focus-within {
