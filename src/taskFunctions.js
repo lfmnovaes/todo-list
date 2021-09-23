@@ -14,18 +14,6 @@ const saveStorage = () => {
   localStorage.setItem('tasks', JSON.stringify(taskList));
 };
 
-const refreshIndex = () => {
-  for (let i = 0; i < taskList.length; i += 1) {
-    taskList[i].index = i;
-  }
-};
-
-const removeElement = (index) => {
-  taskList = taskList.filter((e) => e.index !== parseInt(index, 10));
-  refreshIndex();
-  saveStorage();
-};
-
 const addLi = (ul, index, completed, description) => {
   const item = document.createElement('li');
   const cBox = document.createElement('input');
@@ -62,7 +50,8 @@ const addLi = (ul, index, completed, description) => {
   const elBtn = document.createElement('button');
   elBtn.className = 'element-button';
   elBtn.addEventListener('click', (e) => {
-    removeElement(e.currentTarget.parentNode.childNodes[0].id);
+    // eslint-disable-next-line no-use-before-define
+    removeElement(ul, e.currentTarget.parentNode.childNodes[0].id);
     e.target.closest('li').remove();
   }, false);
   const icon = document.createElement('i');
@@ -74,16 +63,23 @@ const addLi = (ul, index, completed, description) => {
   ul.prepend(item);
 };
 
-const removeCompleted = (ul) => {
-  taskList = taskList.filter((e) => e.completed !== true);
-  while (ul.hasChildNodes()) {
-    ul.removeChild(ul.firstChild);
-  }
-  refreshIndex();
+const refresh = (ul) => {
+  while (ul.hasChildNodes()) ul.removeChild(ul.firstChild);
+  for (let i = 0; i < taskList.length; i += 1) taskList[i].index = i;
   taskList.forEach((task) => {
     addLi(ul, task.index, task.completed, task.description);
   });
   saveStorage();
+};
+
+const removeElement = (ul, index) => {
+  taskList = taskList.filter((e) => e.index !== parseInt(index, 10));
+  refresh(ul);
+};
+
+const removeCompleted = (ul) => {
+  taskList = taskList.filter((e) => e.completed !== true);
+  refresh(ul);
 };
 
 const loadStorage = (ul) => {
