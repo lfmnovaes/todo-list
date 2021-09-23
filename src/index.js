@@ -4,6 +4,7 @@ import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 import taskList from './tasks.js';
+import chkboxStatus from './chkbox.js';
 
 library.add(fas);
 dom.watch();
@@ -60,4 +61,6 @@ window.onload = () => {
   clearBtn.innerText = 'Clear all completed';
   bottom.appendChild(clearBtn);
   boxList.appendChild(bottom);
+
+  chkboxStatus();
 };
