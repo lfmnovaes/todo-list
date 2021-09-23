@@ -44,8 +44,8 @@ const createBox = () => {
   const clearBtn = document.createElement('button');
   clearBtn.classList.add('clear-btn');
   clearBtn.innerText = 'Clear all completed';
-  clearBtn.addEventListener('click', (e) => {
-    console.log('Clear');
+  clearBtn.addEventListener('click', () => {
+    taskFunctions.removeCompleted(ul);
   }, false);
   bottom.appendChild(clearBtn);
   boxList.appendChild(bottom);

@@ -43,18 +43,13 @@ body {
   display: none;
 }
 
-.fa-ellipsis-v,
-.fa-trash {
-  z-index: -1;
-}
-
 .element-button {
   border: none;
-  padding: 0;
   background-color: transparent;
   margin: 0 0 0 auto;
   width: 20px;
   cursor: pointer;
+  pointer-events: none;
 }
 
 #box-list h2 {
@@ -133,10 +128,6 @@ input[type=checkbox]:checked + label {
 [contenteditable] {
   outline: 0 solid transparent;
 }
-
-/* li:focus-within {
-  background-color: lightyellow;
-} */
 
 .clear-btn {
   appearance: none;
