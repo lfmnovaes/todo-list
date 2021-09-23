@@ -1,5 +1,3 @@
-const chkboxStatus = () => {
-  console.log('asd');
-};
+const chkboxStatus = (item) => item.checked;
 
 export default chkboxStatus;
