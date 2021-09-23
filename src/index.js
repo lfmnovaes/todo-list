@@ -12,12 +12,6 @@ const boxList = document.getElementById('box-list');
 const ul = document.createElement('ul');
 ul.classList.add('item-list');
 
-// const addElement = (index, completed, description) => {
-//   taskList.push(new Task(index, completed, description));
-//   addLi(index, completed, description);
-//   taskFunctions.saveStorage(taskList);
-// };
-
 const createBox = () => {
   const top = document.createElement('div');
   const title = document.createElement('h2');
@@ -33,7 +27,7 @@ const createBox = () => {
   const arrow = document.createElement('i');
   input.type = 'text';
   input.placeholder = 'Add to your list ...';
-  input.addEventListener('keypress', function(e) {
+  input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       if (input.value !== '') {
@@ -45,12 +39,14 @@ const createBox = () => {
   arrow.classList.add('fas', 'fa-level-down-alt');
   form.append(input, arrow);
   boxList.append(form, ul);
-
   const bottom = document.createElement('div');
   bottom.classList.add('bottom');
   const clearBtn = document.createElement('button');
   clearBtn.classList.add('clear-btn');
   clearBtn.innerText = 'Clear all completed';
+  clearBtn.addEventListener('click', (e) => {
+    console.log('Clear');
+  }, false);
   bottom.appendChild(clearBtn);
   boxList.appendChild(bottom);
 };
