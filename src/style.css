@@ -99,13 +99,21 @@ input[type=checkbox] {
   padding: 0;
   border: 2px solid #c1c1c3;
   cursor: pointer;
-  float: left;
   color: transparent;
   height: 16px;
   width: 16px;
   border-radius: 2px;
   margin-right: 17px;
   box-sizing: border-box;
+}
+
+input[type=checkbox]:checked {
+  appearance: checkbox;
+}
+
+input[type=checkbox]:checked + label {
+  color: rgba(0, 0, 0, 0.45);
+  text-decoration: line-through;
 }
 
 .clear-btn {
@@ -116,6 +124,12 @@ input[type=checkbox] {
   display: block;
   opacity: 0.5;
   border: none;
+}
+
+.clear-btn:hover {
+  cursor: pointer;
+  opacity: 1;
+  text-decoration: underline;
 }
 
 .bottom {

@@ -3,12 +3,18 @@ import '@fortawesome/fontawesome-free/js/solid.js';
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
-import taskList from './tasks.js';
+import firstList from './tasks.js';
+import chkboxStatus from './chkbox.js';
 
 library.add(fas);
 dom.watch();
 
 const boxList = document.getElementById('box-list');
+let taskList = firstList;
+
+const saveStorage = () => {
+  localStorage.setItem('tasks', JSON.stringify(taskList));
+};
 
 const populateList = () => {
   const list = document.createElement('ul');
@@ -17,6 +23,8 @@ const populateList = () => {
     const item = document.createElement('li');
     const cBox = document.createElement('input');
     cBox.type = 'checkbox';
+    cBox.id = task.index;
+    cBox.checked = task.completed;
     const label = document.createElement('label');
     label.innerText = task.description;
     const icon = document.createElement('i');
@@ -26,11 +34,20 @@ const populateList = () => {
     item.appendChild(label);
     item.appendChild(icon);
     list.appendChild(item);
+
+    cBox.addEventListener('change', () => {
+      if (chkboxStatus(cBox)) {
+        taskList[parseInt(cBox.id, 10)].completed = true;
+      } else {
+        taskList[parseInt(cBox.id, 10)].completed = false;
+      }
+      saveStorage();
+    });
   });
   return list;
 };
 
-window.onload = () => {
+const buildBox = () => {
   const top = document.createElement('div');
   const title = document.createElement('h2');
   const refresh = document.createElement('i');
@@ -60,4 +77,13 @@ window.onload = () => {
   clearBtn.innerText = 'Clear all completed';
   bottom.appendChild(clearBtn);
   boxList.appendChild(bottom);
+};
+
+window.onload = () => {
+  if (localStorage.getItem('tasks') === null) {
+    localStorage.setItem('tasks', JSON.stringify(taskList));
+  } else {
+    taskList = JSON.parse(localStorage.tasks);
+  }
+  buildBox();
 };
