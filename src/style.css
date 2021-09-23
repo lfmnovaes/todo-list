@@ -1,5 +1,6 @@
 * {
   font-family: sans-serif;
+  font-size: 15px;
 }
 
 body {
@@ -22,6 +23,7 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+.fa-trash,
 .fa-sync-alt,
 .fa-level-down-alt,
 .fa-ellipsis-v {
@@ -37,14 +39,21 @@ body {
   transform: rotate(90deg);
 }
 
-.fa-ellipsis-v {
+.fa-trash {
+  display: none;
+}
+
+.element-button {
+  border: none;
+  background-color: transparent;
   margin: 0 0 0 auto;
-  padding-right: 5px;
+  width: 20px;
+  cursor: pointer;
+  pointer-events: none;
 }
 
 #box-list h2 {
   color: #545862;
-  font-size: 15px;
   font-weight: 400;
   padding: 1rem;
   line-height: 20px;
@@ -114,6 +123,10 @@ input[type=checkbox]:checked {
 input[type=checkbox]:checked + label {
   color: rgba(0, 0, 0, 0.45);
   text-decoration: line-through;
+}
+
+[contenteditable] {
+  outline: 0 solid transparent;
 }
 
 .clear-btn {
