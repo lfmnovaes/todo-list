@@ -91,10 +91,8 @@ const loadStorage = (ul) => {
 
 const addElement = (ul, completed, description) => {
   taskList.push(new Task(taskList.length, completed, description));
-  addLi(ul, (taskList.length - 1), completed, description);
+  addLi(ul, taskList.length - 1, completed, description);
   saveStorage();
 };
 
-export {
-  loadStorage, addElement, removeCompleted,
-};
+export { loadStorage, addElement, removeCompleted };
